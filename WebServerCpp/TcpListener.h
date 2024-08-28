@@ -22,6 +22,21 @@ public:
 	
 protected:
 
+	// Handler for client connections
+	virtual void onClientConnected();
+
+	// Handler for client disconnections
+	virtual void onClientDisconnected();
+
+	// handler for when a message is received from client
+	virtual void onMessageReceived(int clientSocket, const char* msg, int length);
+
+	// send a message to client
+	void sendToClient(int clientSocket, const char* msg, int length);
+
+	// Broadcast a message from a client
+	void broadCastToClient(int sendingClient, const char* msg, int length);
+
 private:
 
 	const char* m_ipAddress;	// IP Adddress server will run on

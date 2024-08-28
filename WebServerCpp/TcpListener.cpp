@@ -160,3 +160,24 @@ int TcpListener::run()
 	// Cleanup winsock
 	WSACleanup();
 }
+
+
+
+// send a message to client
+void TcpListener::sendToClient(int clientSocket, const char* msg, int length)
+{
+	send(clientSocket, msg, length, 0);
+}
+
+// Broadcast a message from a client
+void TcpListener::broadCastToClient(int sendingClient, const char* msg, int length) 
+{
+	for (int i = 0; i < m_master.fd_count; i++)
+	{
+		SOCKET outSock = m_master.fd_array[i];
+		if (outSock != m_socket && outSock != sendingClient)
+		{
+			sendToClient(outSock, msg, length);
+		}
+	}
+}
