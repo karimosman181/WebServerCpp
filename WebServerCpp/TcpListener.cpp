@@ -84,7 +84,7 @@ int TcpListener::run()
 				// Add the new connection to the list of connected clients
 				FD_SET(client, &m_master);
 
-				// TODO: add client connected message
+				onClientConnected(client);
 			}
 			else // It's an inbound message
 			{
@@ -96,12 +96,14 @@ int TcpListener::run()
 				if (bytesIn <= 0)
 				{
 					// Drop the client
+					onClientDisconnected(sock);
 					closesocket(sock);
 					FD_CLR(sock, &m_master);
-					// TODO: Client disconnected message
+					
 				}
 				else
 				{
+					onMessageReceived(sock, buf, bytesIn);
 					// Check to see if it's a command. \quit kills the server
 					//if (buf[0] == '\\')
 					//{
@@ -119,18 +121,18 @@ int TcpListener::run()
 
 					// Send message to other clients, and definiately NOT the listening socket
 
-					for (int i = 0; i < m_master.fd_count; i++)
-					{
-						/*SOCKET outSock = m_master.fd_array[i];
-						if (outSock != m_socket && outSock != sock)
-						{
-							ostringstream ss;
-							ss << "SOCKET #" << sock << ": " << buf << "\r\n";
-							string strOut = ss.str();
+					//for (int i = 0; i < m_master.fd_count; i++)
+					//{
+					//	/*SOCKET outSock = m_master.fd_array[i];
+					//	if (outSock != m_socket && outSock != sock)
+					//	{
+					//		ostringstream ss;
+					//		ss << "SOCKET #" << sock << ": " << buf << "\r\n";
+					//		string strOut = ss.str();
 
-							send(outSock, strOut.c_str(), strOut.size() + 1, 0);
-						}*/
-					}
+					//		send(outSock, strOut.c_str(), strOut.size() + 1, 0);
+					//	}*/
+					//}
 				}
 			}
 		}
@@ -159,6 +161,7 @@ int TcpListener::run()
 
 	// Cleanup winsock
 	WSACleanup();
+	return 0;
 }
 
 
@@ -180,4 +183,23 @@ void TcpListener::broadCastToClient(int sendingClient, const char* msg, int leng
 			sendToClient(outSock, msg, length);
 		}
 	}
+}
+
+
+// Handler for client connections
+void TcpListener::onClientConnected(int clientSocket) 
+{
+	
+}
+
+// Handler for client disconnections
+void TcpListener::onClientDisconnected(int clientSocket)
+{
+
+}
+
+// handler for when a message is received from client
+void TcpListener::onMessageReceived(int clientSocket, const char* msg, int length)
+{
+
 }

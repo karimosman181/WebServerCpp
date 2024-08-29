@@ -23,10 +23,10 @@ public:
 protected:
 
 	// Handler for client connections
-	virtual void onClientConnected();
+	virtual void onClientConnected(int clientSocket);
 
 	// Handler for client disconnections
-	virtual void onClientDisconnected();
+	virtual void onClientDisconnected(int clientSocket);
 
 	// handler for when a message is received from client
 	virtual void onMessageReceived(int clientSocket, const char* msg, int length);
