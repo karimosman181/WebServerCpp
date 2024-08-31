@@ -2,11 +2,12 @@
 #include <string>
 
 // Handler for client connections
-void MultiClientChat::onClientConnected(int clientSocket) 
+void MultiClientChat::onClientConnected(int clientSocket)
 {
 	fprintf(stdout, "connected\n");
 	//Send a welcome message to the connected client
 	std::string welcomeMsg = "Welcome to the Awesome Chat Server!\r\n";
+	fprintf(stdout, "" + clientSocket);
 	sendToClient(clientSocket, welcomeMsg.c_str(), welcomeMsg.size() + 1);
 }
 

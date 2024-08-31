@@ -1,4 +1,7 @@
 #include "TcpListener.h"
+#include <string>
+#include <sstream>
+#include <iostream>
 
 int TcpListener::init()
 {
@@ -104,35 +107,7 @@ int TcpListener::run()
 				else
 				{
 					onMessageReceived(sock, buf, bytesIn);
-					// Check to see if it's a command. \quit kills the server
-					//if (buf[0] == '\\')
-					//{
-					//	// Is the command quit? 
-					//	string cmd = string(buf, bytesIn);
-					//	if (cmd == "\\quit")
-					//	{
-					//		running = false;
-					//		break;
-					//	}
 
-					//	// Unknown command
-					//	continue;
-					//}
-
-					// Send message to other clients, and definiately NOT the listening socket
-
-					//for (int i = 0; i < m_master.fd_count; i++)
-					//{
-					//	/*SOCKET outSock = m_master.fd_array[i];
-					//	if (outSock != m_socket && outSock != sock)
-					//	{
-					//		ostringstream ss;
-					//		ss << "SOCKET #" << sock << ": " << buf << "\r\n";
-					//		string strOut = ss.str();
-
-					//		send(outSock, strOut.c_str(), strOut.size() + 1, 0);
-					//	}*/
-					//}
 				}
 			}
 		}
