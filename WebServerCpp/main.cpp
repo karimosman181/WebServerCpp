@@ -1,18 +1,17 @@
-#include "MultiClientChat.h"
+#include "WebServer.h"
 
 //using namespace std;
 
 void main()
 {
 
-	MultiClientChat mcc("0.0.0.0", 54000);
+	WebServer ws("0.0.0.0", 8000);
 
-	if (mcc.init() != 0) {
-		fprintf(stdout, "end\n");
+	if (ws.init() != 0) {
 		return;
 	}
 
-	mcc.run();
+	ws.run();
 
 	system("pause");
 }
