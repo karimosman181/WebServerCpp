@@ -10,11 +10,15 @@
 // handler for when a message is received from client
 void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 {
-	// GET /index.html  HTTP/1.1
 
 	// Parse out the document requested
 	std::istringstream iss(msg);
 	std::vector<std::string> parsed((std::istream_iterator<std::string>(iss)), std::istream_iterator<std::string>());
+
+
+	// parsed request
+	//  parsed[0] => method
+	// parsed[1] => route
 
 
 
@@ -26,7 +30,7 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 	
 	if (parsed.size() >= 3 && parsed[0] == "GET")
 	{
-
+	
 		if (parsed[1] != "/")
 			path = parsed[1];
 

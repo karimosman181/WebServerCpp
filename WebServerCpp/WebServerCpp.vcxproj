@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MultiClientChat.h" />
+    <ClInclude Include="Router.h" />
     <ClInclude Include="TcpListener.h" />
     <ClInclude Include="WebServer.h" />
   </ItemGroup>
