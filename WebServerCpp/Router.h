@@ -24,5 +24,6 @@ public:
 		std::string request_method,
 		void (*callback)(Request*, Response*));
 
-
+	// It will match the path with the registered routes and call the callback to handle the specific request.
+	void route_handler(Request* req, Response* res);
 };
