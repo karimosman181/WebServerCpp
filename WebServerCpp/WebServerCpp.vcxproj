@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiClientChat.cpp" />
+    <ClCompile Include="Router.cpp" />
     <ClCompile Include="TcpListener.cpp" />
     <ClCompile Include="WebServer.cpp" />
   </ItemGroup>
