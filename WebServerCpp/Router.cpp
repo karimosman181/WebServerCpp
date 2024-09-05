@@ -16,5 +16,19 @@ void Router::add_route(std::string url_regex,
 void Router::route_handler(Request* req, Response* res) {
 	//ToDo:
 	// loop over the registered routes and match with correct url_regex
-	// if route found with correct method call callback 
+	// if route found with correct method call callback
+	
+	for (auto& r : routes) {
+		// match request path with route regex
+		std::regex pat{ r.url_regex };
+		std::smatch match;
+
+		if (std::regex_match(req->path, match, pat)
+			&& (req->method.compare(r.request_method) == 0)) {
+			// call callback
+			r.callback(req, res);
+			// exit for loop
+			break;
+		}
+	}
 }
