@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiClientChat.cpp" />
     <ClCompile Include="Router.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="WebServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="MultiClientChat.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="Response.h" />

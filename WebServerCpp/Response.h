@@ -1,9 +1,11 @@
 #pragma once
-
+#include <string>
 
 struct Response {
 	// To Do:
 	// add body
+
+	std::string body;
 };
 
 // To Do:
