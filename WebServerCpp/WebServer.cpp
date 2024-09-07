@@ -26,27 +26,47 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 	int code = 404;
 	std::string codeMessage = "Not Found";
 	std::string path = "\\index.html";
-	
-	
-	if (parsed.size() >= 3 && parsed[0] == "GET")
-	{
-	
+
+	// Create request and response object.
+	if (parsed.size() >= 3) {
+		Request req;
+		Response res;
+		req.method = parsed[0];
+		req.path = "/";
+
 		if (parsed[1] != "/")
 			path = parsed[1];
 
-		// Open the document in the local file system
-		std::ifstream f(".\\www" + path);
+		// Route
+		router->route_handler(&req, &res);
 
-
-		if (f.good())
-		{
-			code = 200;
-			codeMessage = "OK";
-
-			std::string str((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
-			content = str;
+		if (res.body.size() > 0) {
+			content = res.body;
 		}
+
 	}
+
+	
+	
+	//if (parsed.size() >= 3 && parsed[0] == "GET")
+	//{
+	//
+	//	if (parsed[1] != "/")
+	//		path = parsed[1];
+
+	//	// Open the document in the local file system
+	//	std::ifstream f(".\\www" + path);
+
+
+	//	if (f.good())
+	//	{
+	//		code = 200;
+	//		codeMessage = "OK";
+
+	//		std::string str((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
+	//		content = str;
+	//	}
+	//}
 	
 	// write the document back to the client
 	std::ostringstream oss;

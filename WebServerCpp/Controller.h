@@ -1,5 +1,7 @@
 #pragma once
 #include "router.h"
+#include "Request.h"
+#include "Response.h"
 
 
 class Controller
@@ -10,8 +12,7 @@ private:
 	Router router;
 
 public:
-	Router getRouter();
+	Router* getRouter();
 
 	void RegisterRoutes();
-	
 };

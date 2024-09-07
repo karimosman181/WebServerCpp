@@ -1,11 +1,20 @@
 #pragma once
 #include "TcpListener.h"
+#include "Controller.h"
+#include "router.h"
 
 class WebServer : public TcpListener
 {
+	//Controller controller;
+	Router* router;
+
 public:
 	WebServer(const char* ipAddress, int port) :
-		TcpListener(ipAddress, port) { }
+		TcpListener(ipAddress, port) { 
+			Controller controller;
+			controller.RegisterRoutes();
+			router = controller.getRouter();
+		}
 
 protected:
 	// Handler for client connections

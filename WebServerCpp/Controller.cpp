@@ -2,17 +2,9 @@
 #include <istream>
 #include <fstream>
 
-Router Controller::getRouter() {
-	return router;
-}
-
-void Controller::RegisterRoutes() {
-
-	router.add_route("^/", "GET", handleMainPage);
-}
-
 void handleMainPage(Request* req, Response* res)
 {
+	fprintf(stdout, "connected\n");
 	std::string path = "\\index.html";
 
 	// Open the document in the local file system
@@ -25,5 +17,16 @@ void handleMainPage(Request* req, Response* res)
 		std::string content = str;
 		res->body = content;
 	}
-	
+
+};
+
+
+Router* Controller::getRouter() {
+	router.add_route("/", "GET", handleMainPage);
+	return &router;
+}
+
+void Controller::RegisterRoutes() {
+	fprintf(stdout, "registering\n");
+	/*router.add_route("/", "GET", handleMainPage);*/
 }
