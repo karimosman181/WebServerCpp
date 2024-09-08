@@ -25,7 +25,6 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 	std::string content = "<h1>404 Not Found !<h1>";
 	int code = 404;
 	std::string codeMessage = "Not Found";
-	std::string path = "\\index.html";
 
 	// Create request and response object.
 	if (parsed.size() >= 3) {
@@ -35,7 +34,7 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 		req.path = "/";
 
 		if (parsed[1] != "/")
-			path = parsed[1];
+			req.path = parsed[1];
 
 		// Route
 		router->route_handler(&req, &res);

@@ -6,14 +6,17 @@
 class WebServer : public TcpListener
 {
 	//Controller controller;
-	Router* router;
+	/*Router* router;*/
+	Controller controller;
+	Router* router = controller.getRouter();
+
 
 public:
 	WebServer(const char* ipAddress, int port) :
 		TcpListener(ipAddress, port) { 
-			Controller controller;
+			/*Controller controller;
 			controller.RegisterRoutes();
-			router = controller.getRouter();
+			router = controller.getRouter();*/
 		}
 
 protected:

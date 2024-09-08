@@ -8,7 +8,6 @@ void Router::add_route(std::string url_regex,
 	std::string request_method,
 	void (*callback)(Request*, Response*))
 {
-	fprintf(stdout, "adding route\n");
 	// set a Route object to be pushed into the routes vector
 	Route route;
 	route.url_regex = url_regex;
@@ -22,9 +21,6 @@ void Router::route_handler(Request* req, Response* res) {
 	//ToDo:
 	// loop over the registered routes and match with correct url_regex
 	// if route found with correct method call callback
-	
-	fprintf(stdout, std::to_string(routes.size()).c_str());
-	fprintf(stdout, req->path.c_str());
 
 	for (auto& r : routes) {
 		// match request path with route regex
