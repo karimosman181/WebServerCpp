@@ -130,6 +130,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiClientChat.cpp" />
+    <ClCompile Include="Response.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="TcpListener.cpp" />
     <ClCompile Include="WebServer.cpp" />
