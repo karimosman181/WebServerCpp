@@ -21,6 +21,7 @@ void Router::route_handler(Request* req, Response* res) {
 	//ToDo:
 	// loop over the registered routes and match with correct url_regex
 	// if route found with correct method call callback
+	// if route not found send 404 view
 
 	for (auto& r : routes) {
 		// match request path with route regex
@@ -37,4 +38,10 @@ void Router::route_handler(Request* req, Response* res) {
 			break;
 		}
 	}
+
+	if (res->body.size() == 0) {
+		Resp resp;
+		res->body = resp.notFound();
+	}
+	
 }
