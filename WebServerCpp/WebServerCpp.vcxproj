@@ -143,6 +143,7 @@
     <ClInclude Include="Response.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="TcpListener.h" />
+    <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="WebServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
