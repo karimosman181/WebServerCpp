@@ -22,6 +22,9 @@ namespace JSON {
 
 
     public:
-
+        auto returnObject();
+        auto returnList();
+        auto returnString();
+        auto returnFloat();
     };
 }
