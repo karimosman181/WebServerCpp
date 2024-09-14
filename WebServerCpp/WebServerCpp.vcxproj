@@ -133,6 +133,7 @@
     <ClCompile Include="Response.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="TcpListener.cpp" />
+    <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="WebServer.cpp" />
   </ItemGroup>
   <ItemGroup>

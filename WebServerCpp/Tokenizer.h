@@ -17,6 +17,8 @@ enum class TOKEN
 
 class Tokenizer
 {
+    std::fstream file;
+    size_t prevPos;
 
 public:
     //gets the next character after skipping all the whitespace and newlines.
