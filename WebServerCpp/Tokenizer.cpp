@@ -23,3 +23,12 @@ auto Tokenizer::getWithoutWhiteSpace()
 
     return c;
 }
+
+void Tokenizer::rollBackToken()
+{
+    if (file.eof())
+    {
+        file.clear();
+    }
+    file.seekg(prevPos);
+}
