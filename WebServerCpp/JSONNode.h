@@ -26,5 +26,11 @@ namespace JSON {
         auto returnList();
         auto returnString();
         auto returnFloat();
+        void setObject(JSONObject* object);
+        void setString(std::string* s);
+        void setNumber(float f);
+        void setList(JSONList* list);
+        void setBoolean(bool v);
+        void setNull();
     };
-}
+};
