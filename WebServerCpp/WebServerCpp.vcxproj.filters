@@ -36,9 +36,6 @@
     <ClCompile Include="Response.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tokenizer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="JSONNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -68,7 +65,7 @@
     <ClInclude Include="JSONNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tokenizer.h">
+    <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

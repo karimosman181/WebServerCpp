@@ -134,7 +134,6 @@
     <ClCompile Include="Response.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="TcpListener.cpp" />
-    <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="WebServer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +144,7 @@
     <ClInclude Include="Response.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="TcpListener.h" />
-    <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="WebServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
