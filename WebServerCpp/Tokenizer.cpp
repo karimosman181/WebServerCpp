@@ -1,7 +1,4 @@
 #include "Tokenizer.h"
-#include <stdexcept>
-#include <iostream>
-#include <fstream>
 
 auto Tokenizer::getWithoutWhiteSpace()
 {

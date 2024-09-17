@@ -1,4 +1,8 @@
 #pragma once
+#include <string>
+#include <stdexcept>
+#include <iostream>
+#include <fstream>
 
 
 enum class TOKEN
