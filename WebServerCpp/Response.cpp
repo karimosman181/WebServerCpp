@@ -52,3 +52,23 @@ std::string Resp::view(std::string path) {
 	}
 }
 
+std::string Resp::json(JSON json) 
+{
+	int code = 200;
+	std::string codeMessage = "OK";
+
+	std::string content = JSON::stringify(json);
+
+	// write the document back to the client
+	std::ostringstream oss;
+	oss << "HTTP/1.1 " << code << "" << codeMessage << "\r\n";
+	oss << "Cache-Control: no-cache, private\r\n";
+	oss << "Content-Type: application/json;charset=UTF-8\r\n";
+	oss << "Content-Length: " << content.size() << "\r\n";
+	oss << "\r\n";
+	oss << content;
+
+	std::string output = oss.str();
+
+	return output;
+}
