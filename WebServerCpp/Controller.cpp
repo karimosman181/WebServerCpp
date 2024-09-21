@@ -1,7 +1,6 @@
 #include "Controller.h"
 #include <istream>
 #include <fstream>
-#include "JSONNode.h"
 
 void handleMainPage(Request* req, Response* res)
 {
@@ -13,18 +12,18 @@ void handleMainPage(Request* req, Response* res)
 
 void handleJSON(Request* req, Response* res)
 {
-	Resp resp;
-	
-	JSON json = JSON(JSONType::OBJECT);
-	json["name"] = "test";
-	json["age"] = 24;
-	json["height"] = 5.11;
-	json["hobbies"] = std::vector<JSON>{ "Gym" };
-	json["valid"] = true;
-	json["school"] = JSON(JSONType::OBJECT);
-	json["school"]["name"] = "test school";
+	//Resp resp;
+	//
+	//JSON json = JSON(JSONType::OBJECT);
+	//json["name"] = "test";
+	//json["age"] = 24;
+	//json["height"] = 5.11;
+	//json["hobbies"] = std::vector<JSON>{ "Gym" };
+	//json["valid"] = true;
+	//json["school"] = JSON(JSONType::OBJECT);
+	//json["school"]["name"] = "test school";
 
-	res->body = resp.json(json);
+	//res->body = resp.json(json);
 };
 
 

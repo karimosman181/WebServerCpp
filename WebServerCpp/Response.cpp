@@ -52,13 +52,13 @@ std::string Resp::view(std::string path) {
 	}
 }
 
-std::string Resp::json(JSON json) 
+std::string Resp::json() 
 {
 	int code = 200;
 	std::string codeMessage = "OK";
 
-	std::string content = JSON::stringify(json);
-
+	//std::string content = JSON::stringify(json);
+	std::string content = "test";
 	// write the document back to the client
 	std::ostringstream oss;
 	oss << "HTTP/1.1 " << code << "" << codeMessage << "\r\n";
