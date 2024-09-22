@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Json.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiClientChat.cpp" />
     <ClCompile Include="Response.cpp" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Json.h" />
     <ClInclude Include="MultiClientChat.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="Response.h" />

@@ -36,7 +36,7 @@
     <ClCompile Include="Response.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JSONNode.cpp">
+    <ClCompile Include="Json.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +62,7 @@
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="JSONNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="utils.h">
+    <ClInclude Include="Json.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
