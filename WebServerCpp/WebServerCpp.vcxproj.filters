@@ -39,6 +39,9 @@
     <ClCompile Include="Json.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StringExtensions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpListener.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringExtensions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

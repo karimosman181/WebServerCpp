@@ -133,6 +133,7 @@
     <ClCompile Include="MultiClientChat.cpp" />
     <ClCompile Include="Response.cpp" />
     <ClCompile Include="Router.cpp" />
+    <ClCompile Include="StringExtensions.cpp" />
     <ClCompile Include="TcpListener.cpp" />
     <ClCompile Include="WebServer.cpp" />
   </ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="Request.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="Router.h" />
+    <ClInclude Include="StringExtensions.h" />
     <ClInclude Include="TcpListener.h" />
     <ClInclude Include="WebServer.h" />
   </ItemGroup>
