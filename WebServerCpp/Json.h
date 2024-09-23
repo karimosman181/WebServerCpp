@@ -32,10 +32,17 @@
 
 		/**
 		* this constructs a json object consists of the "boolean" value
-		*  @param[boolean] null
+		*  @param[boolean] value
 		* This is the object to wrap in JSON.
 		*/
 		Json(bool value);
+
+		/**
+		* this constructs a json object consists of the "string" value
+		*  @param[string] value
+		* This is the object to wrap in JSON.
+		*/
+		Json(std::string& value);
 
 		/**
 		* encodes the JSON object into a its string rendering

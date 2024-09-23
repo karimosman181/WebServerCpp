@@ -1,10 +1,21 @@
 #include "Json.h"
+#include "StringExtensions.h"
 
+namespace {
+	/**
+	* these are the characters that must be escaped in a quoted string in json 
+	*/
+	const std::set<char> CHARACTERS_TO_ESCAPE_IN_QUOTED_STRING{
+		'"', '\\', '\b','\f','\n','\r','\t',
+	};
+}
 
 /**
 * this contains the private properties of a JSON instance.
 */
 struct Json::Impl {
+	//properties
+
 	/**
 	* these are the different kinds of values that a JSON object can be.
 	* 
@@ -12,7 +23,8 @@ struct Json::Impl {
 
 	enum class Type {
 		Null,
-		Boolean
+		Boolean,
+		String
 	};
 
 	/**
@@ -27,7 +39,25 @@ struct Json::Impl {
 	*/
 	union {
 		bool booleanValue;
-	};
+		std::string* stringValue;
+ 	};
+
+	// lifecycle management
+	~Impl() {
+		switch (type) {
+		case Impl::Type::String: {
+			delete stringValue;
+		}break;
+		default: break;
+		}
+	}
+
+	// Methods
+
+	/**
+	* This is the default constructor
+	*/
+	Impl() = default;
 	 
 };
 
@@ -53,11 +83,18 @@ Json::Json(bool value) : impl_(new Impl)
 	impl_->booleanValue = value;
 }
 
+Json::Json(std::string& value) : impl_(new Impl)
+{
+	impl_->type = Impl::Type::String;
+	impl_->stringValue = new std::string(value);
+}
+
 std::string Json::toString() const
 {
 	switch (impl_->type) {
 	case Impl::Type::Null: return "null";
 	case Impl::Type::Boolean: return impl_->booleanValue ? "true": "false";
+	case Impl::Type::String: return ("\"" + StringExtensions::Escape(*impl_->stringValue, '\\', CHARACTERS_TO_ESCAPE_IN_QUOTED_STRING) + "\"");
 	default: return "!!!";
 	}
 	//return "";
@@ -73,6 +110,9 @@ Json Json::parse(const std::string& format)
 	}
 	else if (format == "true") {
 		return true;
+	}
+	else if (!format.empty() && (format[0] == '"') && (format[format.length() - 1] == '"')) {
+		//return StringExtensions::Unescape(format.substr(1,format.length() - 2), '\\');
 	}
 	else {
 		return Json();
