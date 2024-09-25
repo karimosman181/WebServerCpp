@@ -83,6 +83,13 @@ Json::Json(bool value) : impl_(new Impl)
 	impl_->booleanValue = value;
 }
 
+Json::Json(const char* value) : impl_(new Impl) 
+{
+	impl_->type = Impl::Type::String;
+	impl_->stringValue = new std::string(value);
+}
+
+
 Json::Json(std::string& value) : impl_(new Impl)
 {
 	impl_->type = Impl::Type::String;
@@ -112,7 +119,7 @@ Json Json::parse(const std::string& format)
 		return true;
 	}
 	else if (!format.empty() && (format[0] == '"') && (format[format.length() - 1] == '"')) {
-		//return StringExtensions::Unescape(format.substr(1,format.length() - 2), '\\');
+		StringExtensions::Unescape(format.substr(1,format.length() - 2), '\\');
 	}
 	else {
 		return Json();

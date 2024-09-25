@@ -38,6 +38,13 @@
 		Json(bool value);
 
 		/**
+		* this constructs a json object consists of the "Cstring" value
+		*  @param[boolean] value
+		* This is the object to wrap in JSON.
+		*/
+		Json(const char* value);
+
+		/**
 		* this constructs a json object consists of the "string" value
 		*  @param[string] value
 		* This is the object to wrap in JSON.
