@@ -71,5 +71,8 @@
     <ClInclude Include="StringExtensions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="json-forwards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

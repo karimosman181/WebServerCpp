@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="json-forwards.h" />
     <ClInclude Include="Json.h" />
     <ClInclude Include="MultiClientChat.h" />
     <ClInclude Include="Request.h" />
