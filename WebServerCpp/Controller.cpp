@@ -1,6 +1,7 @@
 #include "Controller.h"
 #include <istream>
 #include <fstream>
+#include "json.h"
 
 void handleMainPage(Request* req, Response* res)
 {
@@ -12,18 +13,21 @@ void handleMainPage(Request* req, Response* res)
 
 void handleJSON(Request* req, Response* res)
 {
-	//Resp resp;
-	//
-	//JSON json = JSON(JSONType::OBJECT);
-	//json["name"] = "test";
-	//json["age"] = 24;
-	//json["height"] = 5.11;
-	//json["hobbies"] = std::vector<JSON>{ "Gym" };
-	//json["valid"] = true;
-	//json["school"] = JSON(JSONType::OBJECT);
-	//json["school"]["name"] = "test school";
+	Json::Value json;
 
-	//res->body = resp.json(json);
+
+	Resp resp;
+	
+	json["name"] = "test";
+	json["age"] = 24;
+	json["height"] = 5.11;
+	json["school"]["name"] = "test school";
+
+	Json::StreamWriterBuilder wbuilder;
+	wbuilder["indentation"] = "\t";
+	std::string jsonString = Json::writeString(wbuilder, json);
+
+	res->body = resp.json(jsonString);
 };
 
 
