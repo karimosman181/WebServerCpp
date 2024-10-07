@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "json.h"
 
 
 struct Response {
@@ -16,7 +17,7 @@ class Resp
 public :
 	std::string notFound();
 	std::string view(std::string path );
-	std::string json(std::string data);
+	std::string json(Json::Value data);
 
 
 };

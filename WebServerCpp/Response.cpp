@@ -52,12 +52,16 @@ std::string Resp::view(std::string path) {
 	}
 }
 
-std::string Resp::json(std::string data)
+std::string Resp::json(Json::Value data)
 {
 	int code = 200;
 	std::string codeMessage = "OK";
 
-	std::string content = data;
+	Json::StreamWriterBuilder wbuilder;
+	wbuilder["indentation"] = "\t";
+	std::string jsonString = Json::writeString(wbuilder, data);
+
+	std::string content = jsonString;
 
 	// write the document back to the client
 	std::ostringstream oss;

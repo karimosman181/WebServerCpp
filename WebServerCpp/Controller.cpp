@@ -23,11 +23,7 @@ void handleJSON(Request* req, Response* res)
 	json["height"] = 5.11;
 	json["school"]["name"] = "test school";
 
-	Json::StreamWriterBuilder wbuilder;
-	wbuilder["indentation"] = "\t";
-	std::string jsonString = Json::writeString(wbuilder, json);
-
-	res->body = resp.json(jsonString);
+	res->body = resp.json(json);
 };
 
 
