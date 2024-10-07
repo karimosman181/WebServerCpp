@@ -14,7 +14,6 @@ void Router::add_route(std::string url_regex,
 	route.request_method = request_method;
 	route.callback = callback;
 	routes.push_back(route);
-	fprintf(stdout, std::to_string(routes.size()).c_str());
 }
 
 void Router::route_handler(Request* req, Response* res) {
@@ -27,8 +26,6 @@ void Router::route_handler(Request* req, Response* res) {
 		// match request path with route regex
 		std::regex pat{ r.url_regex };
 		std::smatch match;
-
-		fprintf(stdout, r.url_regex.c_str());
 
 		if (std::regex_match(req->path, match, pat)
 			&& (req->method.compare(r.request_method) == 0)) {
