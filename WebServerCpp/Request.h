@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
+#include "json.h"
 
 struct Request {
 	std::string method;
 	std::string path;
+	Json::Value body;
 
 	// To do:
 	// add body and parameters

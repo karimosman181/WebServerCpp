@@ -27,6 +27,15 @@ void handleJSON(Request* req, Response* res)
 };
 
 
+void handleJSONReq(Request* req, Response* res)
+{
+	Resp resp;
+
+	req->body["extra"] = 100;
+
+	res->body = resp.json(req->body);
+}
+
 
 Router* Controller::getRouter() {
 	RegisterRoutes();
@@ -37,4 +46,5 @@ Router* Controller::getRouter() {
 void Controller::RegisterRoutes() {
 	router.add_route("/", "GET", handleMainPage);
 	router.add_route("/json", "GET", handleJSON);
+	router.add_route("/json", "POST", handleJSONReq);
 }
