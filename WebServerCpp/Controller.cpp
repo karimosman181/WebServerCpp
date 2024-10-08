@@ -31,7 +31,7 @@ void handleJSONReq(Request* req, Response* res)
 {
 	Resp resp;
 
-	req->body["extra"] = 100;
+	req->body["params"] = req->params;
 
 	res->body = resp.json(req->body);
 }

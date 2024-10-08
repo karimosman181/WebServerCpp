@@ -8,6 +8,51 @@
 #include "WebServer.h"
 #include "json.h"
 
+Json::Value parseQueryParams(const std::string& url) {
+	Json::Value Json;
+
+	// Find the position of '?' to locate the query parameters
+	size_t pos = url.find("?");
+
+	// If there is no '?', return an empty JSON object
+	if (pos == std::string::npos) {
+		return Json;
+	}
+
+	// Extract the query string (everything after '?')
+	std::string queryString = url.substr(pos + 1);
+
+	// Use stringstream to split the query string by '&' and '='
+	std::stringstream ss(queryString);
+	std::string param;
+
+	// Iterate over each key-value pair separated by '&'
+	while (getline(ss, param, '&')) {
+		size_t eqPos = param.find("=");
+		if (eqPos != std::string::npos) {
+			// Split into key and value
+			std::string key = param.substr(0, eqPos);
+			std::string value = param.substr(eqPos + 1);
+			Json[key] = value;  // Store key-value pair in the map
+		}
+	}
+
+	return Json;
+}
+
+std::string extractPath(const std::string& url) {
+	// Find the position of '?'
+	size_t pos = url.find("?");
+
+	// If no '?' is found, return the whole URL as the path
+	if (pos == std::string::npos) {
+		return url;
+	}
+
+	// Return the substring before the '?'
+	return url.substr(0, pos);
+}
+
 // handler for when a message is received from client
 void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 {
@@ -41,7 +86,9 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 		req.path = "/";
 
 		if (parsed[1] != "/")
-			req.path = parsed[1];
+			req.path = extractPath(parsed[1]);
+
+		req.params = parseQueryParams(parsed[1]);
 
 		//get body for POST, PATCH, PUT
 		if (req.method == "POST" || req.method == "PATCH" || req.method == "PUT") 
