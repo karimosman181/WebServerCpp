@@ -31,7 +31,7 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 	wbuilder["indentation"] = "\t";
 	std::string jsonString = Json::writeString(wbuilder, Json);
 
-	//fprintf(stdout, jsonString.c_str());
+	fprintf(stdout, jsonString.c_str());
 
 	// Create request and response object.
 	if (parsed.size() >= 3) {
@@ -48,14 +48,17 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 		{
 			if (parsed[6] == "application/json") 
 			{
-				int bodyContentSize = std::stoi(parsed[12]);
+				//int bodyContentSize = std::stoi(parsed[12]);
 
 				std::string bodyString = "";
-				int i = 12;
-				while (i < parsed.size() - 1)
-				{
-					i++;
-					bodyString = bodyString + parsed[i];
+				bool inBody = false;
+				for (const auto& elem : parsed) {
+					if (elem == "{") {
+						inBody = true;
+					}
+					if (inBody) {
+						bodyString += elem;
+					}
 				}
 
 				Json::Value reqBodyJson;
