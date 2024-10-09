@@ -7,6 +7,7 @@ struct Request {
 	std::string path;
 	Json::Value body;
 	Json::Value params;
+	std::map<std::string, std::string> url_params;
 
 	// To do:
 	// add body and parameters
