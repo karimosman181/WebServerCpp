@@ -17,18 +17,38 @@ void Router::add_route(std::string url_regex,
 }
 
 void Router::route_handler(Request* req, Response* res) {
-	//ToDo:
-	// loop over the registered routes and match with correct url_regex
-	// if route found with correct method call callback
-	// if route not found send 404 view
+	
+
 
 	for (auto& r : routes) {
-		// match request path with route regex
-		std::regex pat{ r.url_regex };
+		// Convert :param in the route to a regex capture group
+		std::string route_pattern = r.url_regex;
+		std::regex param_regex{ R"(:([a-zA-Z_][a-zA-Z0-9_]*))" };  // Matches :param in the URL
+		route_pattern = std::regex_replace(route_pattern, param_regex, R"(([^/]+))");  // Replace :param with a regex capture group
+
+		std::regex pat{ route_pattern };
 		std::smatch match;
 
 		if (std::regex_match(req->path, match, pat)
 			&& (req->method.compare(r.request_method) == 0)) {
+			// Capture the named parameters
+			std::sregex_iterator param_begin(r.url_regex.begin(), r.url_regex.end(), param_regex);
+			std::sregex_iterator param_end;
+
+			// Map to store captured parameters
+			std::map<std::string, std::string> params;
+
+			// Loop through the parameters found in the route
+			int index = 1;  // Match index starts from 1 because match[0] is the entire match
+			for (std::sregex_iterator i = param_begin; i != param_end; ++i, ++index) {
+				std::string param_name = (*i)[1].str();  // Get the parameter name (without ':')
+				std::string param_value = match[index].str();  // Get the corresponding value from the URL
+				params[param_name] = param_value;  // Store param name and value in the map
+			}
+
+			// Add parameters to the request object (if Request has a map for params)
+			req->url_params = params;
+
 			// call callback
 			r.callback(req, res);
 			// exit for loop
