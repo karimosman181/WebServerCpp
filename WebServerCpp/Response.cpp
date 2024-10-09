@@ -1,7 +1,9 @@
 #include "Response.h"
+#include <iostream>
 #include <istream>
 #include <fstream>
 #include <sstream>
+
 
 
 std::string Resp::notFound() {
@@ -50,6 +52,46 @@ std::string Resp::view(std::string path) {
 	else {
 		return notFound();
 	}
+}
+
+std::string Resp::image(std::string path) {
+	// Open the image file in binary mode
+	std::ifstream file(".\\www\\assets\\images\\" + path, std::ios::in | std::ios::binary | std::ios::ate);
+
+	if (!file.is_open()) {
+		fprintf(stdout, "Failed to open the image file!\r\n");
+		return notFound();
+	}
+
+	// Get the size of the image
+	std::streamsize size = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	// Read the image content into a buffer
+	std::vector<char> buffer(size);
+	if (!file.read(buffer.data(), size)) {
+		fprintf(stdout, "Failed to read the image file!\r\n");
+		return notFound();
+	}
+
+	int code = 200;
+	std::string codeMessage = "OK";
+
+	// write the document back to the client
+	std::ostringstream oss;
+	oss << "HTTP/1.1 " << code << "" << codeMessage << "\r\n";
+	oss << "Cache-Control: no-cache, private\r\n";
+	oss << "Content-Type: image/jpeg\r\n";
+	oss << "Content-Length: " << size << "\r\n";
+	oss << "Connection: close\r\n";
+	oss << "\r\n";  // End of headers
+
+	// Add the image content to the string stream
+	oss.write(buffer.data(), size);
+
+	std::string output = oss.str();
+
+	return output;
 }
 
 std::string Resp::json(Json::Value data)

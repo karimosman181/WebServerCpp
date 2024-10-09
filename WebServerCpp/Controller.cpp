@@ -36,6 +36,21 @@ void handleJSONReq(Request* req, Response* res)
 	res->body = resp.json(req->body);
 }
 
+void handleImages(Request* req, Response* res)
+{
+	Resp resp;
+
+	std::string path = req->params.get("path", "").asString();
+
+	if (path == "")
+		res->body = resp.notFound();
+	else {
+		fprintf(stdout, "running");
+		res->body = resp.image(path);
+	}
+
+}
+
 
 Router* Controller::getRouter() {
 	RegisterRoutes();
@@ -47,4 +62,5 @@ void Controller::RegisterRoutes() {
 	router.add_route("/", "GET", handleMainPage);
 	router.add_route("/json", "GET", handleJSON);
 	router.add_route("/json", "POST", handleJSONReq);
+	router.add_route("/img", "GET", handleImages);
 }

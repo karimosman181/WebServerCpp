@@ -76,7 +76,7 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 	wbuilder["indentation"] = "\t";
 	std::string jsonString = Json::writeString(wbuilder, Json);
 
-	fprintf(stdout, jsonString.c_str());
+	/*fprintf(stdout, jsonString.c_str());*/
 
 	// Create request and response object.
 	if (parsed.size() >= 3) {
