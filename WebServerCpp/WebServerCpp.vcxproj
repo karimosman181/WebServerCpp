@@ -131,7 +131,6 @@
     <ClCompile Include="HomeController.cpp" />
     <ClCompile Include="Json.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MultiClientChat.cpp" />
     <ClCompile Include="Response.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="StringExtensions.cpp" />
@@ -145,7 +144,6 @@
     <ClInclude Include="HomeController.h" />
     <ClInclude Include="json-forwards.h" />
     <ClInclude Include="Json.h" />
-    <ClInclude Include="MultiClientChat.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="Router.h" />
