@@ -112,6 +112,19 @@ std::string Resp::css(std::string path) {
 	}
 }
 
+std::string getMimeType(const std::string& filePath) {
+	// Extract the file extension
+	std::string extension = filePath.substr(filePath.find_last_of('.') + 1);
+
+	// Determine the MIME type based on the extension
+	if (extension == "png") return "image/png";
+	else if (extension == "jpg" || extension == "jpeg") return "image/jpeg";
+	else if (extension == "gif") return "image/gif";
+	else if (extension == "bmp") return "image/bmp";
+	else if (extension == "svg") return "image/svg+xml";
+	else return "application/octet-stream"; // Default for unknown types
+}
+
 std::string Resp::image(std::string path) {
 	// Open the image file in binary mode
 	std::ifstream file(".\\www\\assets\\images\\" + path, std::ios::in | std::ios::binary | std::ios::ate);
@@ -135,11 +148,14 @@ std::string Resp::image(std::string path) {
 	int code = 200;
 	std::string codeMessage = "OK";
 
+	// Get the MIME type based on the file extension
+	std::string mimeType = getMimeType(path);
+
 	// write the document back to the client
 	std::ostringstream oss;
 	oss << "HTTP/1.1 " << code << "" << codeMessage << "\r\n";
 	oss << "Cache-Control: no-cache, private\r\n";
-	oss << "Content-Type: image/jpeg\r\n";
+	oss << "Content-Type: "<< mimeType<<"\r\n";
 	oss << "Content-Length: " << size << "\r\n";
 	oss << "Connection: close\r\n";
 	oss << "\r\n";  // End of headers

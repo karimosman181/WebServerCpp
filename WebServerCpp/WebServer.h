@@ -1,22 +1,18 @@
 #pragma once
 #include "TcpListener.h"
 #include "Controller.h"
+#include "ControllerFactory.cpp"
 #include "router.h"
 
 class WebServer : public TcpListener
 {
-	//Controller controller;
-	/*Router* router;*/
-	Controller controller;
-	Router* router = controller.getRouter();
+	Router router;
 
 
 public:
 	WebServer(const char* ipAddress, int port) :
 		TcpListener(ipAddress, port) { 
-			/*Controller controller;
-			controller.RegisterRoutes();
-			router = controller.getRouter();*/
+			RegisterAllRoutes();
 		}
 
 protected:
@@ -28,4 +24,17 @@ protected:
 
 	// handler for when a message is received from client
 	virtual void onMessageReceived(int clientSocket, const char* msg, int length);
+
+private: 
+	void RegisterAllRoutes() {
+		auto controllers = ControllerFactory::GetControllers();
+		for (auto controller : controllers) {
+			controller->RegisterRoutes(&router);
+		}
+
+		// Clean up controllers
+		for (auto controller : controllers) {
+			delete controller;
+		}
+	}
 };

@@ -120,7 +120,7 @@ void WebServer::onMessageReceived(int clientSocket, const char* msg, int length)
 		}
 
 		// Route
-		router->route_handler(&req, &res);
+		router.route_handler(&req, &res);
 
 		std::string output = res.body;
 		int size = output.size() + 1;

@@ -127,7 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="AssetsController.cpp" />
+    <ClCompile Include="HomeController.cpp" />
     <ClCompile Include="Json.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiClientChat.cpp" />
@@ -138,7 +139,10 @@
     <ClCompile Include="WebServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controller.h" />
+    <ClInclude Include="AssetsController.h" />
+    <ClInclude Include="BaseController.h" />
+    <ClInclude Include="ControllerFactory.cpp" />
+    <ClInclude Include="HomeController.h" />
     <ClInclude Include="json-forwards.h" />
     <ClInclude Include="Json.h" />
     <ClInclude Include="MultiClientChat.h" />
