@@ -15,69 +15,69 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src/main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TcpListener.cpp">
+    <ClCompile Include="src/server/TcpListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WebServer.cpp">
+    <ClCompile Include="src/server/WebServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Router.cpp">
+    <ClCompile Include="src/routing/Router.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Response.cpp">
+    <ClCompile Include="src/routing/Response.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Json.cpp">
+    <ClCompile Include="src/json/Json.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringExtensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HomeController.cpp">
+    <ClCompile Include="src/controllers/HomeController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AssetsController.cpp">
+    <ClCompile Include="src/controllers/AssetsController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TcpListener.h">
+    <ClInclude Include="src/server/TcpListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WebServer.h">
+    <ClInclude Include="src/server/WebServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Router.h">
+    <ClInclude Include="src/routing/Router.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Request.h">
+    <ClInclude Include="src/routing/Request.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Response.h">
+    <ClInclude Include="src/routing/Response.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Json.h">
+    <ClInclude Include="src/json/Json.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StringExtensions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="json-forwards.h">
+    <ClInclude Include="src/json/json-forwards.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BaseController.h">
+    <ClInclude Include="src/controllers/BaseController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ControllerFactory.cpp">
+    <ClInclude Include="src/factories/ControllerFactory.cpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="HomeController.h">
+    <ClInclude Include="src/controllers/HomeController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AssetsController.h">
+    <ClInclude Include="src/controllers/AssetsController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

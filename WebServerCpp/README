@@ -1,0 +1,66 @@
+# My Web Server Project
+
+This project implements a simple web server in C++ that serves static assets, handles requests, and responds with appropriate content. The server is structured to allow for easy maintenance and extensibility.
+
+## Project Structure
+
+The directory structure of the project is organized as follows:
+
+/my_web_server_project
+├── /www                      # Public web directory for serving files
+│   ├── /assets               # Static assets directory
+│   │   ├── /css             # Stylesheets
+│   │   │   └── style.css
+│   │   ├── /js              # JavaScript files
+│   │   │   └── file.js
+│   │   └── /images          # Image files
+│   │       └── image.png
+│   └── index.html           # Main HTML file
+├── /src                      # Source files for the server
+│   ├── controllers           # Controllers for handling requests
+│   │   ├── BaseController.h
+│   │   ├── BaseController.cpp
+│   │   ├── AssetsController.h
+│   │   ├── AssetsController.cpp
+│   │   ├── HomeController.h
+│   │   └── HomeController.cpp
+│   ├── factories             # Factory classes for creating objects
+│   │   └── ControllerFactory.cpp
+│   ├── models                # Data models (if applicable)
+│   ├── routing               # Routing related files
+│   │   ├── Router.h
+│   │   ├── Router.cpp
+│   │   └── Request.h
+│   ├── responses             # Response handling
+│   │   ├── Response.h
+│   │   └── Response.cpp
+│   ├── server                # Server functionality
+│   │   ├── TcpListener.h
+│   │   ├── TcpListener.cpp
+│   │   └── WebServer.h
+│   │   └── WebServer.cpp
+│   ├── json                  # JSON handling
+│   │   ├── Json.h
+│   │   ├── Json-forwards.h
+│   │   └── Json.cpp
+│   └── main.cpp              # Main entry point for the application
+
+
+
+## Description
+
+- **/www**: Contains all public-facing files, including HTML and static assets.
+- **/src**: Houses all source code, organized into functional directories for better maintainability.
+  - **controllers**: Contains controller classes that manage request handling.
+  - **models**: (Optional) Data models for application logic.
+  - **routing**: Includes routing logic for the server.
+  - **responses**: Handles server responses.
+  - **server**: Implements the core server functionality.
+  - **json**: Contains JSON handling utilities.
+  - **main.cpp**: Entry point for starting the server.
+
+## Build Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/my_web_server_project.git

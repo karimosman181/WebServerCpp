@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\controllers;$(ProjectDir)src\routing;$(ProjectDir)src\server;$(ProjectDir)src\json;$(ProjectDir)src\factories;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,29 +128,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AssetsController.cpp" />
-    <ClCompile Include="HomeController.cpp" />
-    <ClCompile Include="Json.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Response.cpp" />
-    <ClCompile Include="Router.cpp" />
+    <ClCompile Include="src/controllers/AssetsController.cpp" />
+    <ClCompile Include="src/controllers/HomeController.cpp" />
+    <ClCompile Include="src/json/Json.cpp" />
+    <ClCompile Include="src/main.cpp" />
+    <ClCompile Include="src/routing/Response.cpp" />
+    <ClCompile Include="src/routing/Router.cpp" />
     <ClCompile Include="StringExtensions.cpp" />
-    <ClCompile Include="TcpListener.cpp" />
-    <ClCompile Include="WebServer.cpp" />
+    <ClCompile Include="src/server/TcpListener.cpp" />
+    <ClCompile Include="src/server/WebServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssetsController.h" />
-    <ClInclude Include="BaseController.h" />
-    <ClInclude Include="ControllerFactory.cpp" />
-    <ClInclude Include="HomeController.h" />
-    <ClInclude Include="json-forwards.h" />
-    <ClInclude Include="Json.h" />
-    <ClInclude Include="Request.h" />
-    <ClInclude Include="Response.h" />
-    <ClInclude Include="Router.h" />
+    <ClInclude Include="src/controllers/AssetsController.h" />
+    <ClInclude Include="src/controllers/BaseController.h" />
+    <ClInclude Include="src/controllers/ControllerFactory.cpp" />
+    <ClInclude Include="src/controllers/HomeController.h" />
+    <ClInclude Include="src/json/json-forwards.h" />
+    <ClInclude Include="src/json/Json.h" />
+    <ClInclude Include="src/routing/Request.h" />
+    <ClInclude Include="src/routing/Response.h" />
+    <ClInclude Include="src/routing/Router.h" />
     <ClInclude Include="StringExtensions.h" />
-    <ClInclude Include="TcpListener.h" />
-    <ClInclude Include="WebServer.h" />
+    <ClInclude Include="src/server/TcpListener.h" />
+    <ClInclude Include="src/server/WebServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
