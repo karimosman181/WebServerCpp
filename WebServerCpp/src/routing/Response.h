@@ -16,7 +16,7 @@ class Resp
 
 public :
 	std::string notFound();
-	std::string view(std::string path );
+	std::string view(std::string path, Json::Value context = {});
 	std::string js(std::string path);
 	std::string css(std::string path);
 	std::string image(std::string path);

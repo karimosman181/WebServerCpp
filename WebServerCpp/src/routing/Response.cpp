@@ -3,6 +3,7 @@
 #include <istream>
 #include <fstream>
 #include <sstream>
+#include "Template.h"
 
 
 
@@ -25,7 +26,7 @@ std::string Resp::notFound() {
 	return output;
 }
 
-std::string Resp::view(std::string path) {
+std::string Resp::view(std::string path, Json::Value context) {
 	// Open the document in the local file system
 	std::ifstream f(".\\www" + path);
 
@@ -43,7 +44,16 @@ std::string Resp::view(std::string path) {
 		oss << "Content-Type: text/html\r\n";
 		oss << "Content-Length: " << content.size() << "\r\n";
 		oss << "\r\n";
-		oss << content;
+
+		std::string result = content;
+
+		if (context.size() > 0) {
+			Template tmp;
+
+			result = tmp.processTemplate(content, context);
+		}
+		
+		oss << result;
 
 		std::string output = oss.str();
 

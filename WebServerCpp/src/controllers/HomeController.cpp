@@ -5,8 +5,13 @@ void HomeController::handleMainPage(Request* req, Response* res)
 {
 	Resp resp;
 
+	Json::Value json;
+	json["name"] = "test";
+	json["age"] = 24;
+
 	std::string path = "\\index.html";
-	res->body = resp.view(path);
+
+	res->body = resp.view(path, json);
 };
 
 void HomeController::handleJSON(Request* req, Response* res)
