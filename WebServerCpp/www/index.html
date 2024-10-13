@@ -10,6 +10,16 @@
 <body>
 
     <h1>Hello {{name}}! age: {{age}}</h1>
+
+    {{#if bool}}
+    <p>This is a conditional message.</p>
+    {{/if}}
+
+    <ul>
+        {{#each arr}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
 </body>
 
 </html>
