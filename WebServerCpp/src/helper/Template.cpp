@@ -36,7 +36,7 @@ std::string Template::processTemplate(const std::string& content, const Json::Va
     //result.erase(std::remove_if(result.begin(), result.end(), ::isspace), result.end());
 
     // Process if-else statements (example: {{#if condition}}...{{#else}}...{{/if}})
-    std::regex if_else_regex(R"(\{\{\#if (.*?)\}\}(.*?)\{\{\#else\}\}(.*?)\{\{\/if\}\})", std::regex_constants::ECMAScript | std::regex_constants::nosubs);
+    std::regex if_else_regex(R"(\{\{\#if\s+(.*?)\}\}([\s\S]*?)\{\{\#else\}\}([\s\S]*?)\{\{\/if\}\})", std::regex_constants::ECMAScript);
     std::sregex_iterator it(result.begin(), result.end(), if_else_regex);
     std::sregex_iterator end;
     std::string tmp1 = result;
@@ -61,16 +61,18 @@ std::string Template::processTemplate(const std::string& content, const Json::Va
 
         ++it; // Move to the next match
     }
+
     result = tmp1;
 
     // Process conditional statements (example: {{#if condition}}...{{/if}})
     // Implicit else is an empty string when condition is false
-    std::regex if_regex(R"(\{\{\#if (.*?)\}\}(.*?)\{\{\/if\}\})", std::regex_constants::ECMAScript | std::regex_constants::nosubs);
+    std::regex if_regex(R"(\{\{\#if\s+(.*?)\}\}([\s\S]*?)\{\{\/if\}\})", std::regex_constants::ECMAScript);
     std::sregex_iterator it_if(result.begin(), result.end(), if_regex);
+    std::sregex_iterator end_if;
 
     std::string tmp2 = result;
 
-    while (it_if != end) {
+    while (it_if != end_if) {
         std::smatch match = *it_if;
         std::string condition = match[1].str();
         std::string trueBlock = match[2].str();
@@ -93,16 +95,17 @@ std::string Template::processTemplate(const std::string& content, const Json::Va
     result = tmp2;
 
     // Process loops (example: {{#each items}}...{{/each}} as a similar structure to if-else)
-    std::regex each_regex(R"(\{\{\#each (.*?)\}\}(.*?)\{\{\/each\}\})", std::regex_constants::ECMAScript | std::regex_constants::nosubs);
+    std::regex each_regex(R"(\{\{\#each\s+(.*?)\}\}([\s\S]*?)\{\{\/each\}\})", std::regex_constants::ECMAScript);
     std::sregex_iterator it_each(result.begin(), result.end(), each_regex);
+    std::sregex_iterator end_each;
 
     std::string tmp3 = result;
 
-    while (it_each != end) {
+    while (it_each != end_each) {
         std::smatch match = *it_each;
         std::string itemKey = match[1].str();
         std::string innerContent = match[2].str();
-        
+       
         // If the key exists and is an array, loop over the items; else, render nothing
         std::string loopResult;
         if (context[itemKey] && context[itemKey].isArray()) {
@@ -121,7 +124,7 @@ std::string Template::processTemplate(const std::string& content, const Json::Va
         ++it_each; // Move to the next match
     }
     result = tmp3;
-
+    
     //// Templating logic for variable substitution
     std::regex placeholder_regex(R"(\{\{(.*?)\}\})");
     std::sregex_iterator it_var(result.begin(), result.end(), placeholder_regex);
