@@ -8,9 +8,9 @@ void HomeController::handleMainPage(Request* req, Response* res)
 	Json::Value json;
 	json["name"] = "test";
 	json["age"] = 24;
-	int myNumbers[5] = { 10, 20, 30, 40, 50 };
-	json["arr"] = myNumbers;
 	json["bool"] = true;
+	json["arr"][0] =  10;
+	json["arr"][1] = 20;
 
 	std::string path = "\\index.html";
 
