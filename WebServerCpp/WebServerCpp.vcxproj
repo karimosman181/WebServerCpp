@@ -142,7 +142,7 @@
   <ItemGroup>
     <ClInclude Include="src/controllers/AssetsController.h" />
     <ClInclude Include="src/controllers/BaseController.h" />
-    <ClInclude Include="src/controllers/ControllerFactory.cpp" />
+    <ClInclude Include="src/factories/ControllerFactory.cpp" />
     <ClInclude Include="src/controllers/HomeController.h" />
     <ClInclude Include="src/json/json-forwards.h" />
     <ClInclude Include="src/json/Json.h" />
