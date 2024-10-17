@@ -8,9 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
-<body data-theme="light" class="font-sans">
+<body x-data="{ 
+        theme: localStorage.getItem('theme') || 'light',
+        toggleTheme() {
+            this.theme = (this.theme === 'light') ? 'dark' : 'light';
+            localStorage.setItem('theme', this.theme);
+        }
+    }" :data-theme="theme" class="font-sans">
     <!-- Navbar -->
     <div class="navbar bg-base-200 py-3 ">
         <div class="ml-auto mr-auto max-w-[1104px] pl-[1.5rem] pr-[1.5rem] w-full">
@@ -18,12 +25,25 @@
                 <div class="flex-1">
                     <strong class="text-xl">WSCpp</strong>
                 </div>
-                <div class="flex-none">
-                    <button class="btn btn-square btn-ghost">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                <div class="flex-none flex flex-wrap items-center gap-x-2">
+                    <button @click="toggleTheme" class="btn btn-circle bg-base-100">
+                        <svg x-show="theme === 'light'" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+                            <g>
+                                <path d="M13.273,5.865l.831,.303c.328,.12,.586,.373,.707,.693l.307,.82c.146,.391,.519,.65,.936,.65h0c.417,0,.79-.258,.937-.649l.307-.818c.122-.322,.38-.576,.708-.695l.831-.303c.395-.144,.657-.52,.657-.939s-.263-.795-.657-.939l-.831-.303c-.328-.12-.586-.373-.707-.694l-.308-.82c-.146-.391-.52-.649-.937-.649h0c-.417,0-.79,.259-.936,.65l-.306,.817c-.122,.322-.38,.576-.708,.695l-.831,.303c-.395,.144-.657,.52-.657,.939s.263,.795,.657,.939Z" />
+                                <path d="M22.386,12.003c-.402-.168-.87-.056-1.151,.279-.928,1.106-2.507,1.621-4.968,1.621-3.814,0-6.179-1.03-6.179-6.158,0-2.397,.532-4.019,1.626-4.957,.33-.284,.439-.749,.269-1.15-.17-.4-.571-.646-1.015-.604C5.285,1.572,1,6.277,1,11.977c0,6.062,4.944,10.994,11.022,10.994,5.72,0,10.438-4.278,10.973-9.951,.042-.436-.205-.848-.609-1.017Zm-10.363,8.967c-4.975,0-9.022-4.035-9.022-8.994,0-3.827,2.362-7.105,5.78-8.402-.464,1.134-.692,2.517-.692,4.17,0,7.312,4.668,8.158,8.179,8.158,1.216,0,2.761-.094,4.177-.673-1.306,3.396-4.588,5.74-8.421,5.74Z" />
+                            </g>
+                            <g>
+                                <circle cx="18.49" cy="11.349" r="1" />
+                                <circle cx="13.99" cy="10.766" r="1" />
+                            </g>
+                        </svg>
+                        <svg x-show="theme === 'dark'" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+                            <path d="M23,11H18.92a6.924,6.924,0,0,0-.429-1.607l3.527-2.044a1,1,0,1,0-1-1.731l-3.53,2.047a7.062,7.062,0,0,0-1.149-1.15l2.046-3.531a1,1,0,0,0-1.731-1L14.607,5.509A6.9,6.9,0,0,0,13,5.08V1a1,1,0,0,0-2,0V5.08a6.9,6.9,0,0,0-1.607.429L7.349,1.982a1,1,0,0,0-1.731,1L7.664,6.515a7.062,7.062,0,0,0-1.149,1.15L2.985,5.618a1,1,0,1,0-1,1.731L5.509,9.393A6.924,6.924,0,0,0,5.08,11H1a1,1,0,0,0,0,2H5.08a6.924,6.924,0,0,0,.429,1.607L1.982,16.651a1,1,0,1,0,1,1.731l3.53-2.047a7.062,7.062,0,0,0,1.149,1.15L5.618,21.016a1,1,0,0,0,1.731,1l2.044-3.527A6.947,6.947,0,0,0,11,18.92V23a1,1,0,0,0,2,0V18.92a6.947,6.947,0,0,0,1.607-.429l2.044,3.527a1,1,0,0,0,1.731-1l-2.046-3.531a7.062,7.062,0,0,0,1.149-1.15l3.53,2.047a1,1,0,1,0,1-1.731l-3.527-2.044A6.924,6.924,0,0,0,18.92,13H23A1,1,0,0,0,23,11ZM12,17c-6.608-.21-6.606-9.791,0-10C18.608,7.21,18.606,16.791,12,17Z" />
                         </svg>
                     </button>
+                    <div class="mt-2">
+                        <a class="github-button" href="https://github.com/karimosman181/WebServerCpp" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star your-repo on GitHub">Star</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,7 +54,7 @@
     <div class="bg-base-200">
         <section class="pb-16 pt-20 md:pt-28">
             <div class="ml-auto mr-auto max-w-[1104px] pl-[1.5rem] pr-[1.5rem]">
-                <h1 class="text-[62px] leading-[62px] tracking-[-2px] font-semibold md:max-w-3xl">
+                <h1 class="text-[36px] leading-[36px] md:text-[62px] md:leading-[62px] tracking-[-2px] font-semibold md:max-w-3xl">
                     A high-performance C++ web server paired with a modern frontend.
                 </h1>
                 <div class="mt-6 md:max-w-2xl">
@@ -42,7 +62,7 @@
                         Build robust, scalable web applications using the power of C++ on the backend with a sleek, reactive frontend powered by Tailwind CSS and Alpine.js.
                     </p>
                     <div class="mt-10">
-                        <a class="btn btn-primary" href="#">
+                        <a class="btn btn-primary" href="https://github.com/karimosman181/WebServerCpp">
                             <span>Get started</span>
                         </a>
                     </div>
@@ -51,7 +71,7 @@
         </section>
         <section class="pb-16 pt-20" x-data="{ activeTab: 1 }">
             <div class="ml-auto mr-auto max-w-[1104px] pl-[1.5rem] pr-[1.5rem]">
-                <div role="tablist" class="tabs w-[65%] mb-8">
+                <div role="tablist" class="tabs overflow-x-scroll md:overflow-x-auto md:w-[65%] mb-8">
                     <a role="tab" id="tab-1" class="tab flex flex-col items-center space-y-2 text-s h-full " :class="activeTab === 1 ? 'text-primary' : 'text-gray-400 hover:text-gray-600'" :tabindex="activeTab === 1 ? 0 : -1" :aria-selected="activeTab === 1" aria-controls="tabpanel-1" @click="activeTab = 1" @focus="activeTab = 1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 md:w-10 md:h-10" data-name="Layer 1" fill='currentColor' viewBox="0 0 24 24" width="50" height="50">
                             <path d="M18.271,7.74c.97,.971,.97,2.549,0,3.519l-3.3,3.3-2.121-2.121,2.938-2.938-2.938-2.938,2.121-2.121,3.299,3.299Zm-9.243-3.299l-3.3,3.3c-.969,.97-.969,2.548,0,3.519l3.299,3.299,2.121-2.121-2.938-2.938,2.938-2.938-2.121-2.121Zm4.472,14.559v2h4.5v3H6v-3h4.5v-2H0V3.5C0,1.57,1.57,0,3.5,0H20.5c1.93,0,3.5,1.57,3.5,3.5v15.5H13.5Zm-10.5-3H21V3.5c0-.275-.224-.5-.5-.5H3.5c-.276,0-.5,.225-.5,.5v12.5Z" />
@@ -266,7 +286,7 @@
         </section>
         <section class="pb-16 pt-20" x-data="{ activeTab: 1 }">
             <div class="ml-auto mr-auto max-w-[1104px] pl-[1.5rem] pr-[1.5rem]">
-                <div role="tablist" class="tabs w-[40%] mb-8">
+                <div role="tablist" class="tabs overflow-x-scroll md:overflow-x-auto md:w-[40%] mb-8">
                     <a role="tab" id="tab-1" class="tab flex flex-col items-center space-y-2 text-s h-full " :class="activeTab === 1 ? 'text-primary' : 'text-gray-400 hover:text-gray-600'" :tabindex="activeTab === 1 ? 0 : -1" :aria-selected="activeTab === 1" aria-controls="tabpanel-1" @click="activeTab = 1" @focus="activeTab = 1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 md:w-10 md:h-10" data-name="Layer 1" fill='currentColor' viewBox="0 0 24 24" width="50" height="50">
                             <path d="M18.271,7.74c.97,.971,.97,2.549,0,3.519l-3.3,3.3-2.121-2.121,2.938-2.938-2.938-2.938,2.121-2.121,3.299,3.299Zm-9.243-3.299l-3.3,3.3c-.969,.97-.969,2.548,0,3.519l3.299,3.299,2.121-2.121-2.938-2.938,2.938-2.938-2.121-2.121Zm4.472,14.559v2h4.5v3H6v-3h4.5v-2H0V3.5C0,1.57,1.57,0,3.5,0H20.5c1.93,0,3.5,1.57,3.5,3.5v15.5H13.5Zm-10.5-3H21V3.5c0-.275-.224-.5-.5-.5H3.5c-.276,0-.5,.225-.5,.5v12.5Z" />
@@ -288,13 +308,12 @@
                 </div>
                 <div>
                     <div id="tabpanel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1" x-show="activeTab === 1" x-transition:enter="transition ease-in duration-700 transform order-last" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="mockup-code">
-                        <pre data-prefix="1"><code><span class="text-primary">#include</span> "BaseController.h"</code></pre>
-                        <pre data-prefix="2"><code><br /></code></pre>
-                        <pre data-prefix="3"><code><span class="text-primary">class</span> <span class="text-accent">HomeController</span> : <span class="text-primary">public</span> <span class="text-accent">BaseController</span> {</code></pre>
-                        <pre data-prefix="4"><code><span class="text-primary">public:</span></code></pre>
-                        <pre data-prefix="5"><code>&nbsp;&nbsp;<span class="text-primary">void</span> <span class="text-secondary">RegisterRoutes</span>(<span class="text-accent">Router</span>* router) <span class="text-primary">override</span> {</code></pre>
-                        <pre data-prefix="6"><code>&nbsp;&nbsp;}</code></pre>
-                        <pre data-prefix="7"><code>}</code></pre>
+                        <pre data-prefix="1"><code>&#60;<span class="text-secondary">body</span>&#62;</pre>
+                        <pre data-prefix="2"><code>&nbsp;&nbsp;&#60;<span class="text-secondary">div</span> <span class="text-primary">x-data</span>="<span class="text-accent">{ open: false }</span>" <span class="text-primary">class</span>="<span class="text-accent">p-5</span>"&#62;</code></pre>
+                        <pre data-prefix="3"><code>&nbsp;&nbsp;&nbsp;&nbsp;&#60;<span class="text-secondary">button</span> <span class="text-primary">@click</span>="<span class="text-accent">open = !open</span>" <span class="text-primary">class</span>="<span class="text-accent">bg-blue-500 text-white p-2</span>"&#62;Toggle&#60;/<span class="text-secondary">button</span>&#62;</code></pre>
+                        <pre data-prefix="4"><code>&nbsp;&nbsp;&nbsp;&nbsp;&#60;<span class="text-secondary">div</span> <span class="text-primary">x-show</span>="<span class="text-accent">open</span>" <span class="text-primary">class</span>="<span class="text-accent">mt-3</span>"&#62;This is a toggleable section&#60;/<span class="text-secondary">div</span>&#62;</code></pre>
+                        <pre data-prefix="5"><code>&nbsp;&nbsp;&#60;/<span class="text-secondary">div</span>&#62;</code></pre>
+                        <pre data-prefix="6"><code>&#60;/<span class="text-secondary">body</span>&#62;</code></pre>
                     </div>
 
                     <div id="tabpanel-2" role="tabpanel" tabindex="1" aria-labelledby="tab-2" x-show="activeTab === 2" x-transition:enter="transition ease-in duration-700 transform order-last" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100 " class="mockup-code">
@@ -331,7 +350,7 @@
 
     <footer class="footer bg-neutral text-neutral-content p-10">
         <div class="ml-auto mr-auto max-w-[1104px] pl-[1.5rem] pr-[1.5rem] w-full">
-            <div class="flex justify-between items-center w-full">
+            <div class="flex flex-col md:flex-row justify-between items-center w-full">
                 <aside class="flex-1">
                     <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" class="fill-current">
                         <path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
@@ -343,11 +362,7 @@
                 <nav>
                     <h6 class="footer-title">Contribute</h6>
                     <div class="grid grid-flow-col gap-4">
-                        <a>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
-                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-                            </svg>
-                        </a>
+                        <a class="github-button" href="https://github.com/karimosman181" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @buttons on GitHub">Follow @karimosman181</a>
                     </div>
                 </nav>
             </div>
