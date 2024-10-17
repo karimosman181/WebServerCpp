@@ -134,7 +134,7 @@
     <ClCompile Include="src/main.cpp" />
     <ClCompile Include="src/routing/Response.cpp" />
     <ClCompile Include="src/routing/Router.cpp" />
-    <ClCompile Include="src\helper\Template.cpp" />
+    <ClCompile Include="src/helper/Template.cpp" />
     <ClCompile Include="StringExtensions.cpp" />
     <ClCompile Include="src/server/TcpListener.cpp" />
     <ClCompile Include="src/server/WebServer.cpp" />
@@ -149,7 +149,7 @@
     <ClInclude Include="src/routing/Request.h" />
     <ClInclude Include="src/routing/Response.h" />
     <ClInclude Include="src/routing/Router.h" />
-    <ClInclude Include="src\helper\Template.h" />
+    <ClInclude Include="src/helper/Template.h" />
     <ClInclude Include="StringExtensions.h" />
     <ClInclude Include="src/server/TcpListener.h" />
     <ClInclude Include="src/server/WebServer.h" />
