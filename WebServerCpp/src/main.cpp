@@ -2,7 +2,7 @@
 
 //using namespace std;
 
-void main()
+int main()
 {
 
 	//TODO:
@@ -11,10 +11,12 @@ void main()
 	WebServer ws("0.0.0.0", 8000);
 
 	if (ws.init() != 0) {
-		return;
+		return -1;
 	}
 
 	ws.run();
 
 	system("pause");
+
+	return 0;
 }
