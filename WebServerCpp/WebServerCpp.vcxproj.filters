@@ -42,6 +42,9 @@
     <ClCompile Include="src/controllers/AssetsController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src/helper/Template.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/server/TcpListener.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src/controllers/AssetsController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src/helper/Template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

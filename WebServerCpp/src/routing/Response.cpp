@@ -6,6 +6,16 @@
 #include "Template.h"
 
 
+std::string join(const std::vector<std::string>& vec, const std::string& delimiter) {
+	std::ostringstream result;
+	for (size_t i = 0; i < vec.size(); ++i) {
+		result << vec[i];
+		if (i != vec.size() - 1) {
+			result << delimiter;
+		}
+	}
+	return result.str();
+}
 
 std::string Resp::notFound() {
 	std::string content = "<h1>404 Not Found !<h1>";
@@ -26,7 +36,7 @@ std::string Resp::notFound() {
 	return output;
 }
 
-std::string Resp::view(std::string path, Json::Value context) {
+std::string Resp::view(std::string path, Json::Value context, MetaData meta) {
 	// Open the document in the local file system
 	std::ifstream f(".\\www" + path);
 
@@ -36,6 +46,35 @@ std::string Resp::view(std::string path, Json::Value context) {
 		std::string codeMessage = "OK";
 		std::string str((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
 		std::string content = str;
+
+       // Inject meta data in the <head> section
+        std::string metaTags;
+		if (meta.title.size() > 0)  metaTags += "<title>" + meta.title + "</title>\n";
+    	if(meta.charset.size() > 0) metaTags += "<meta charset=\"" + meta.charset + "\">\n";
+    	if(meta.description.size() > 0) metaTags += "<meta name=\"description\" content=\"" + meta.description + "\">\n";
+    	if(meta.keywords.size() > 0) metaTags += "<meta name=\"keywords\" content=\"" + join(meta.keywords, ",") + "\">\n";
+        if(meta.viewport.size() > 0) metaTags += "<meta name=\"viewport\" content=\"" + meta.viewport + "\">\n";
+        if(meta.author.size() > 0) metaTags += "<meta name=\"author\" content=\"" + meta.author + "\">\n";
+        if(meta.robots.size() > 0) metaTags += "<meta name=\"robots\" content=\"" + meta.robots + "\">\n";
+        if(meta.ogTitle.size() > 0) metaTags += "<meta property=\"og:title\" content=\"" + meta.ogTitle + "\">\n";
+        if(meta.ogDescription.size() > 0) metaTags += "<meta property=\"og:description\" content=\"" + meta.ogDescription + "\">\n";
+        if(meta.ogImage.size() > 0) metaTags += "<meta property=\"og:image\" content=\"" + meta.ogImage + "\">\n";
+        if(meta.ogUrl.size() > 0) metaTags += "<meta property=\"og:url\" content=\"" + meta.ogUrl + "\">\n";
+        if(meta.twitterCard.size() > 0) metaTags += "<meta name=\"twitter:card\" content=\"" + meta.twitterCard + "\">\n";
+        if(meta.twitterTitle.size() > 0) metaTags += "<meta name=\"twitter:title\" content=\"" + meta.twitterTitle + "\">\n";
+        if(meta.twitterDescription.size() > 0) metaTags += "<meta name=\"twitter:description\" content=\"" + meta.twitterDescription + "\">\n";
+        if(meta.twitterImage.size() > 0) metaTags += "<meta name=\"twitter:image\" content=\"" + meta.twitterImage + "\">\n";
+        if(meta.canonical.size() > 0) metaTags += "<link rel=\"canonical\" href=\"" + meta.canonical + "\">\n";
+        if(meta.schema.size() > 0) metaTags += "<script type=\"application/ld+json\">" + meta.schema + "</script>\n";
+
+		// Insert metadata into the head tag of the HTML
+        size_t headPos = content.find("<head>");
+        if (headPos != std::string::npos) {
+            size_t headEndPos = content.find("</head>", headPos);
+            if (headEndPos != std::string::npos) {
+                content.insert(headEndPos, metaTags); // Insert meta tags before </head>
+            }
+        }
 
 		// write the document back to the client
 		std::ostringstream oss;

@@ -5,16 +5,21 @@ void HomeController::handleMainPage(Request* req, Response* res)
 {
 	Resp resp;
 
-	Json::Value json;
+	/*Json::Value json;
 	json["name"] = "test";
 	json["age"] = 24;
 	json["bool"] = true;
 	json["arr"][0] =  10;
-	json["arr"][1] = 20;
+	json["arr"][1] = 20;*/
 
 	std::string path = "\\index.html";
 
-	res->body = resp.view(path, json);
+	MetaData meta;
+	meta.title = "Home Page";
+	meta.description = "This is the home page of the website.";
+	meta.keywords = { "home", "test", "website" };
+
+	res->body = resp.view(path, {}, meta);
 };
 
 void HomeController::handleJSON(Request* req, Response* res)

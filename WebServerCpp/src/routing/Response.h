@@ -27,6 +27,7 @@ struct MetaData {
 
 struct Response {
 	std::string body;
+    MetaData metaData;
 };
 
 
@@ -35,7 +36,7 @@ class Resp
 
 public :
 	std::string notFound();
-	std::string view(std::string path, Json::Value context = {});
+	std::string view(std::string path, Json::Value context = {}, MetaData meta = {});
 	std::string js(std::string path);
 	std::string css(std::string path);
 	std::string image(std::string path);
