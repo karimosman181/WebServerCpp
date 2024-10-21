@@ -67,12 +67,20 @@ std::string Resp::view(std::string path, Json::Value context, MetaData meta) {
         if(meta.canonical.size() > 0) metaTags += "<link rel=\"canonical\" href=\"" + meta.canonical + "\">\n";
         if(meta.schema.size() > 0) metaTags += "<script type=\"application/ld+json\">" + meta.schema + "</script>\n";
 
+
+		//inset tailwind, daisyUI, alpinejs scripts
+		std::string scripts;
+		scripts += "<link href=\"https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css\" rel=\"stylesheet\" type=\"text/css\" />";
+		scripts += "<script src=\"https://cdn.tailwindcss.com\"></script>";
+		scripts += "<script src=\"//unpkg.com/alpinejs\" defer></script>";
+	
 		// Insert metadata into the head tag of the HTML
         size_t headPos = content.find("<head>");
         if (headPos != std::string::npos) {
             size_t headEndPos = content.find("</head>", headPos);
             if (headEndPos != std::string::npos) {
                 content.insert(headEndPos, metaTags); // Insert meta tags before </head>
+				content.insert(headEndPos, scripts); // Insert scripts tags before </head>
             }
         }
 
